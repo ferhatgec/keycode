@@ -1,0 +1,6 @@
+[submodule "impl/enigne"]
+	path = impl/enigne
+	url = https://github.com/ferhatgec/enigne.git
+[submodule "libs/command"]
+	path = libs/command
+	url = https://github.com/ferhatgec/command.git
