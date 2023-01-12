@@ -24,18 +24,28 @@
 
 int main(int argc, char** argv) {
     if(argc >= 2) {
-        std::cout << "keycode for " << __KEYCODE_IMPL__ << '\n';
+        std::cout << "keycode for " << __KEYCODE_IMPL__ << "\n"
+         << ".keycode script located at HOME/.keycode\n";
+
         return 1;
     }
+
+    
 
     device* data = new device();
     std::string home_path(getpwuid(getuid())->pw_dir);
     
+
+
     std::string file_data;
 
     if(home_path.back() != '/')
         home_path.push_back('/');
 
+
+    std::cout << "keycode for " << __KEYCODE_IMPL__ << "\n"
+        << ".keycode script located at " << home_path + ".keycode\n";
+         
     if(std::filesystem::exists(home_path + ".keycode")) {
         std::ifstream file(home_path + ".keycode");
         for(std::string script_data; 
