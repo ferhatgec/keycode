@@ -1,0 +1,36 @@
+# to build, 
+#
+# use git 'elite Elitefile update'
+# then go to the impl/enigne then use 'elite Elitefile install' 
+# to build latest version of enigne.
+# then return and use 'elite Elitefile install'
+#
+
+required_version is 0.1
+
+set bin_path as      "/usr/bin/"
+set output   as      "{bin_path}keycode"
+
+set sudo     as      "sudo"
+set compiler as      "c++"
+set standard as std  "c++20"
+set flag/s   as link "stdc++fs X11 Xi"
+
+for signal "start" [
+    set files as "src/keycode.cpp"
+
+    for argument "update" [
+        use exec "git submodule init"
+        use exec "git submodule update"
+    ]
+
+    for argument "install" [
+        use exec "{sudo} {compiler} {standard} {files} -o {output} {flag/s}"
+
+        for exists "{output}" [
+            println "Installed to {output}"
+        ]
+    ]
+
+    use signal "exit"
+]
